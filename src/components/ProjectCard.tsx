@@ -8,7 +8,21 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-      {project.imageUrl && (
+      {project.videoUrl && (
+        <div className="h-48 bg-gray-200 overflow-hidden">
+          <video 
+            src={project.videoUrl} 
+            className="w-full h-full object-cover"
+            controls
+            muted
+            loop
+            preload="metadata"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
+      {!project.videoUrl && project.imageUrl && (
         <div className="h-48 bg-gray-200 overflow-hidden">
           <img 
             src={project.imageUrl} 

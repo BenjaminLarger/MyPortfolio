@@ -4,6 +4,7 @@ export interface Project {
   description: string;
   technologies: string[];
   imageUrl?: string;
+  videoUrl?: string;
   githubUrl?: string;
   liveUrl?: string;
   category: '42-malaga' | 'ai-agents';
