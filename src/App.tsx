@@ -35,26 +35,39 @@ function App() {
     });
   };
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <Hero />
-        <ProjectSection 
-          id="42-projects"
-          title="42 Projects"
-          description="Rigorous projects from the innovative 42 curriculum, focusing on system programming, algorithms, and software engineering fundamentals."
-          projects={projects42}
-          onViewDocumentation={handleViewDocumentation}
-        />
-        <ProjectSection 
-          id="ai-projects"
-          title="AI Agent Projects"
-          description="Cutting-edge AI agent development projects showcasing machine learning, natural language processing, and intelligent automation solutions."
-          projects={aiProjects}
-          onViewDocumentation={handleViewDocumentation}
-        />
-      </main>
-      <Footer />
+    <div className="min-h-screen bg-ai-black bg-ai-gradient overflow-hidden">
+      {/* Animated background mesh */}
+      <div className="fixed inset-0 bg-ai-mesh opacity-50 animate-pulse-slow"></div>
+      
+      {/* Floating particles effect */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-ai-cyan rounded-full animate-float opacity-60"></div>
+        <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-ai-purple rounded-full animate-float opacity-40" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-3/4 w-1 h-1 bg-ai-pink rounded-full animate-float opacity-50" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/6 right-1/4 w-1 h-1 bg-ai-green rounded-full animate-float opacity-45" style={{animationDelay: '0.5s'}}></div>
+      </div>
+      
+      <div className="relative z-10">
+        <Header />
+        <main className="pt-20">
+          <Hero />
+          <ProjectSection 
+            id="42-projects"
+            title="42 Projects"
+            description="Rigorous projects from the innovative 42 curriculum, focusing on system programming, algorithms, and software engineering fundamentals."
+            projects={projects42}
+            onViewDocumentation={handleViewDocumentation}
+          />
+          <ProjectSection 
+            id="ai-projects"
+            title="AI Agent Projects"
+            description="Cutting-edge AI agent development projects showcasing machine learning, natural language processing, and intelligent automation solutions."
+            projects={aiProjects}
+            onViewDocumentation={handleViewDocumentation}
+          />
+        </main>
+        <Footer />
+      </div>
       
       <ProjectModal
         isOpen={modalState.isOpen}
