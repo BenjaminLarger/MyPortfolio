@@ -26,7 +26,7 @@ const Header: React.FC = () => {
                 onClick={() => scrollToSection('42-projects')}
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
-                42 Malaga
+                42 Projects
               </button>
               <button
                 onClick={() => scrollToSection('ai-projects')}

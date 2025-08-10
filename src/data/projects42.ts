@@ -21,6 +21,7 @@ export const projects42: Project[] = [
     featured: true,
     completionDate: '2024-07-15',
     githubUrl: 'https://github.com/BenjaminLarger/minishell',
+    imageUrl: '/assets/photos/minishell.jpeg',
   },
   {
     id: 'philosophers',

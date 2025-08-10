@@ -41,7 +41,7 @@ function App() {
         <Hero />
         <ProjectSection 
           id="42-projects"
-          title="42 Malaga Projects"
+          title="42 Projects"
           description="Rigorous projects from the innovative 42 curriculum, focusing on system programming, algorithms, and software engineering fundamentals."
           projects={projects42}
           onViewDocumentation={handleViewDocumentation}

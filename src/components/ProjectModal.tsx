@@ -67,27 +67,37 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
 
         {/* Main Content - Side by Side Layout */}
         <div className="flex-1 overflow-hidden flex flex-col lg:flex-row">
-          {/* Video Section */}
-          {project.videoUrl && (
+          {/* Media Section - Video or Image */}
+          {(project.videoUrl || project.imageUrl) && (
             <div className="lg:w-1/2 p-6 border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col">
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">Project Demo</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                {project.videoUrl ? 'Project Demo' : 'Project Preview'}
+              </h3>
               <div className="flex-1 bg-gray-200 rounded-lg overflow-hidden min-h-[250px] lg:min-h-[400px]">
-                <video 
-                  src={project.videoUrl} 
-                  className="w-full h-full object-contain"
-                  controls
-                  muted
-                  loop
-                  preload="metadata"
-                >
-                  Your browser does not support the video tag.
-                </video>
+                {project.videoUrl ? (
+                  <video 
+                    src={project.videoUrl} 
+                    className="w-full h-full object-contain"
+                    controls
+                    muted
+                    loop
+                    preload="metadata"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <img
+                    src={project.imageUrl}
+                    alt={`${project.title} preview`}
+                    className="w-full h-full object-contain"
+                  />
+                )}
               </div>
             </div>
           )}
 
           {/* Documentation Section */}
-          <div className={`flex-1 overflow-y-auto p-6 ${project.videoUrl ? 'lg:w-1/2' : 'w-full'}`}>
+          <div className={`flex-1 overflow-y-auto p-6 ${(project.videoUrl || project.imageUrl) ? 'lg:w-1/2' : 'w-full'}`}>
             <h3 className="text-lg font-semibold text-gray-800 mb-3">Documentation</h3>
             {isLoading && (
             <div className="flex items-center justify-center py-8">

@@ -10,6 +10,7 @@ export const aiProjects: Project[] = [
     featured: true,
     completionDate: '2024-12-15',
     githubUrl: 'https://github.com/BenjaminLarger/ApplyGenius',
+    imageUrl: '/assets/photos/genius-apply.webp',
   },
   {
     id: 'sheet-agent',
@@ -20,5 +21,6 @@ export const aiProjects: Project[] = [
     featured: true,
     completionDate: '2024-11-20',
     githubUrl: 'https://github.com/BenjaminLarger/SheetAgent',
+    imageUrl: '/assets/photos/sheet-agent.avif',
   },
 ];
