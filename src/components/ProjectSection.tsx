@@ -7,9 +7,10 @@ interface ProjectSectionProps {
   title: string;
   description: string;
   projects: Project[];
+  onViewDocumentation: (projectId: string, projectTitle: string) => void;
 }
 
-const ProjectSection: React.FC<ProjectSectionProps> = ({ id, title, description, projects }) => {
+const ProjectSection: React.FC<ProjectSectionProps> = ({ id, title, description, projects, onViewDocumentation }) => {
   return (
     <section id={id} className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,7 +38,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ id, title, description,
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} onViewDocumentation={onViewDocumentation} />
             ))}
           </div>
         )}

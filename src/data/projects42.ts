@@ -2,7 +2,7 @@ import { Project } from '../types/project';
 
 export const projects42: Project[] = [
   {
-    id: '42-push-swap',
+    id: 'push_swap',
     title: 'push_swap',
     description: 'Sorting algorithm project using two stacks and a limited set of operations. Focuses on algorithm optimization and complexity analysis.',
     technologies: ['C', 'Algorithms', 'Data Structures'],
@@ -13,7 +13,7 @@ export const projects42: Project[] = [
     videoUrl: '/assets/videos/push_swap.mp4',
   },
   {
-    id: '42-minishell',
+    id: 'minishell',
     title: 'minishell',
     description: 'A simple shell implementation with built-in commands, environment variable handling, and signal management. Team project focusing on system programming.',
     technologies: ['C', 'System Calls', 'Process Management', 'Parsing'],
@@ -23,7 +23,7 @@ export const projects42: Project[] = [
     githubUrl: 'https://github.com/BenjaminLarger/minishell',
   },
   {
-    id: '42-philosophers',
+    id: 'philosophers',
     title: 'Philosophers',
     description: 'Implementation of the dining philosophers problem using threads and mutexes. Explores concurrent programming and deadlock prevention.',
     technologies: ['C', 'Threading', 'Mutexes', 'Synchronization'],
@@ -34,7 +34,7 @@ export const projects42: Project[] = [
     videoUrl: '/assets/videos/philo.mp4',
   },
   {
-    id: '42-cub3d',
+    id: 'cub3d',
     title: 'cub3D',
     description: 'A 3D game engine using raycasting technique, inspired by Wolfenstein 3D. Features texture mapping, sprite rendering, and basic game mechanics.',
     technologies: ['C', 'MiniLibX', 'Raycasting', 'Graphics Programming'],
@@ -45,7 +45,7 @@ export const projects42: Project[] = [
     videoUrl: '/assets/videos/cub3d.mp4',
   },
   {
-    id: '42-so-long',
+    id: 'so-long',
     title: 'so_long',
     description: '2D game project using MiniLibX graphics library. Features sprite animation, collision detection, and map parsing with flood fill algorithm.',
     technologies: ['C', 'MiniLibX', '2D Graphics', 'Game Development'],
@@ -56,7 +56,7 @@ export const projects42: Project[] = [
     videoUrl: '/assets/videos/so_long.mp4',
   },
   {
-    id: '42-transcendence',
+    id: 'transcendence',
     title: 'ft_transcendence',
     description: 'Full-stack web application featuring a Pong game with real-time multiplayer, user authentication, chat system, and tournament management.',
     technologies: ['TypeScript', 'NestJS', 'PostgreSQL', 'WebSocket', 'Docker', 'React'],
@@ -67,7 +67,7 @@ export const projects42: Project[] = [
     videoUrl: '/assets/videos/transcendence.mp4',
   },
   {
-    id: '42-webserv',
+    id: 'webserver',
     title: 'webserv',
     description: 'HTTP/1.1 server implementation from scratch in C++. Supports multiple virtual hosts, CGI execution, and handles various HTTP methods.',
     technologies: ['C++', 'HTTP Protocol', 'Socket Programming', 'CGI'],
