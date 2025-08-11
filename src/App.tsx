@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import ProjectSection from './components/ProjectSection'
 import Footer from './components/Footer'
 import ProjectModal from './components/ProjectModal'
+import SmoothCursor from './components/SmoothCursor'
 import { projects42 } from './data/projects42'
 import { aiProjects } from './data/aiProjects'
 import { Project } from './types/project'
@@ -35,7 +36,7 @@ function App() {
     });
   };
   return (
-    <div className="min-h-screen bg-ai-black bg-ai-gradient overflow-hidden">
+    <div className="min-h-screen bg-ai-black bg-ai-gradient overflow-hidden cursor-none">
       {/* Animated background mesh */}
       <div className="fixed inset-0 bg-ai-mesh opacity-50 animate-pulse-slow"></div>
       
@@ -74,6 +75,8 @@ function App() {
         onClose={handleCloseModal}
         project={modalState.project}
       />
+      
+      <SmoothCursor />
     </div>
   )
 }
