@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
                 benjaminlarger.bl@gmail.com
               </a>
               <a 
-                href="https://linkedin.com/in/yourprofile" 
+                href="https://www.linkedin.com/in/benjamin-larger/" 
                 className="group flex items-center text-gray-300 hover:text-ai-blue transition-colors font-mono"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
                 linkedin.connect()
               </a>
               <a 
-                href="https://github.com/yourusername" 
+                href="https://github.com/BenjaminLarger" 
                 className="group flex items-center text-gray-300 hover:text-ai-green transition-colors font-mono"
                 target="_blank"
                 rel="noopener noreferrer"

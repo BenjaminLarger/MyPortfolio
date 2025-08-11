@@ -35,7 +35,12 @@ const IconCloud: React.FC<IconCloudProps> = ({ images, className = '' }) => {
       img.crossOrigin = 'anonymous';
       
       return new Promise<Icon>((resolve, reject) => {
+        const timeout = setTimeout(() => {
+          reject(new Error(`Timeout loading ${src}`));
+        }, 10000); // 10 second timeout
+        
         img.onload = () => {
+          clearTimeout(timeout);
           const phi = Math.acos(-1 + (2 * index) / images.length);
           const theta = Math.sqrt(images.length * Math.PI) * phi;
           
@@ -51,13 +56,26 @@ const IconCloud: React.FC<IconCloudProps> = ({ images, className = '' }) => {
             scale: 1,
           });
         };
-        img.onerror = reject;
+        img.onerror = () => {
+          clearTimeout(timeout);
+          console.warn(`Failed to load icon: ${src}`);
+          reject(new Error(`Failed to load ${src}`));
+        };
         img.src = src;
       });
     });
 
     try {
-      const loadedIcons = await Promise.all(iconPromises);
+      const results = await Promise.allSettled(iconPromises);
+      const loadedIcons = results
+        .filter((result): result is PromiseFulfilledResult<Icon> => result.status === 'fulfilled')
+        .map(result => result.value);
+      
+      if (loadedIcons.length === 0) {
+        console.error('No icons could be loaded');
+        return;
+      }
+      
       setIcons(loadedIcons);
       setIsLoaded(true);
     } catch (error) {
@@ -111,23 +129,37 @@ const IconCloud: React.FC<IconCloudProps> = ({ images, className = '' }) => {
 
     rotatedIcons.forEach(icon => {
       const scale = (radius.current * 2 - icon.z) / (radius.current * 2);
-      const alpha = Math.max(0.1, scale);
-      const size = Math.max(15, 35 * scale);
+      const alpha = Math.max(0.4, Math.min(1, scale * 1.2)); // Improved visibility
+      const size = Math.max(25, 40 * scale); // Larger minimum size
 
       ctx.save();
       ctx.globalAlpha = alpha;
       ctx.translate(centerX + icon.x, centerY + icon.y);
       
-      // Draw circular background
+      // Draw more visible circular background with gradient
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, size / 2 + 4);
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.25)');
+      gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.15)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0.05)');
+      
       ctx.beginPath();
-      ctx.arc(0, 0, size / 2 + 3, 0, 2 * Math.PI);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.arc(0, 0, size / 2 + 4, 0, 2 * Math.PI);
+      ctx.fillStyle = gradient;
       ctx.fill();
+      
+      // Add subtle border for better definition
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
       
       // Draw icon with circular clip
       ctx.beginPath();
       ctx.arc(0, 0, size / 2, 0, 2 * Math.PI);
       ctx.clip();
+      
+      // Enhance image rendering
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(icon.img, -size / 2, -size / 2, size, size);
       
       ctx.restore();
@@ -192,11 +224,21 @@ const IconCloud: React.FC<IconCloudProps> = ({ images, className = '' }) => {
 
   return (
     <div className={`relative ${className}`}>
+      {!isLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+            <p className="text-gray-300 text-sm">Loading technologies...</p>
+          </div>
+        </div>
+      )}
       <canvas
         ref={canvasRef}
         width={400}
         height={400}
-        className="w-full h-full max-w-md mx-auto cursor-auto touch-manipulation"
+        className={`w-full h-full max-w-md mx-auto cursor-pointer touch-manipulation transition-opacity duration-500 ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{ 
