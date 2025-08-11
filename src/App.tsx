@@ -2,9 +2,9 @@ import { useState } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import ProjectSection from './components/ProjectSection'
+import TechnologiesSection from './components/TechnologiesSection'
 import Footer from './components/Footer'
 import ProjectModal from './components/ProjectModal'
-import SmoothCursor from './components/SmoothCursor'
 import { projects42 } from './data/projects42'
 import { aiProjects } from './data/aiProjects'
 import { Project } from './types/project'
@@ -36,7 +36,7 @@ function App() {
     });
   };
   return (
-    <div className="min-h-screen bg-ai-black bg-ai-gradient overflow-hidden cursor-none">
+    <div className="min-h-screen bg-ai-black bg-ai-gradient overflow-hidden">
       {/* Animated background mesh */}
       <div className="fixed inset-0 bg-ai-mesh opacity-50 animate-pulse-slow"></div>
       
@@ -66,6 +66,7 @@ function App() {
             projects={aiProjects}
             onViewDocumentation={handleViewDocumentation}
           />
+          <TechnologiesSection />
         </main>
         <Footer />
       </div>
@@ -75,8 +76,6 @@ function App() {
         onClose={handleCloseModal}
         project={modalState.project}
       />
-      
-      <SmoothCursor />
     </div>
   )
 }
