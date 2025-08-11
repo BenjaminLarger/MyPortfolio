@@ -1,8 +1,15 @@
 {
+  "redirects": [
+    {
+      "source": "/home/blarger/Desktop/projects/Portfolio/MyPortfolio/assets/:filePath",
+      "destination": "https://benjaminlarger-portfolio.vercel.app/assets/:filePath",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/home/blarger/Desktop/projects/Portfolio/MyPortfolio/assets",
+      "destination": "https://benjaminlarger-portfolio.vercel.app/"
     }
   ]
 }
