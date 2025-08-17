@@ -2,6 +2,17 @@ import { Project } from '../types/project';
 
 export const aiProjects: Project[] = [
   {
+    id: 'meetingflow-ai',
+    title: 'MeetingFlow AI - Personal Automation Assistant',
+    description: 'AI-powered automation agent that creates a multi-step workflow: Gmail → OpenAI Processing → Calendar Integration. Features Gmail OAuth integration, LangChain-powered meeting detail extraction, and automated Google Calendar event creation with an enhanced UI.',
+    technologies: ['Python', 'FastAPI', 'LangChain', 'OpenAI API', 'Gmail API', 'Google Calendar API', 'OAuth 2.0'],
+    category: 'ai-agents',
+    featured: true,
+    completionDate: '2025-01-15',
+    imageUrl: '/assets/photos/MeetingFlow_AI.png',
+    githubUrl: 'https://github.com/BenjaminLarger/MeetingFlowAI',
+  },
+  {
     id: 'apply-genius',
     title: 'GeniusApply - CV & Cover Letter Generator',
     description: 'AI-powered document generation system using CrewAI that automatically tailors CVs and cover letters for specific job applications. Features job analysis, skills matching, HTML generation, and PDF conversion with an interactive Streamlit UI.',
