@@ -8,7 +8,7 @@ export const aiProjects: Project[] = [
     technologies: ['Python', 'FastAPI', 'LangChain', 'OpenAI API', 'Gmail API', 'Google Calendar API', 'OAuth 2.0'],
     category: 'ai-agents',
     featured: true,
-    completionDate: '2025-01-15',
+    completionDate: '2025-08-15',
     imageUrl: '/assets/photos/MeetingFlow_AI.png',
     githubUrl: 'https://github.com/BenjaminLarger/MeetingFlowAI',
   },
