@@ -50,6 +50,14 @@ const Header: React.FC = () => {
               </button>
               <span className="text-ai-light-gray font-mono text-sm">|</span>
               <button
+                onClick={() => scrollToSection('mobile-projects')}
+                className="group relative px-4 py-2 text-gray-300 hover:text-ai-pink font-mono text-sm transition-all duration-300 hover:bg-ai-light-gray/20 rounded-lg"
+              >
+                <span className="relative z-10">mobile_app[]</span>
+                <div className="absolute inset-0 bg-ai-pink/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </button>
+              <span className="text-ai-light-gray font-mono text-sm">|</span>
+              <button
                 onClick={() => scrollToSection('contact')}
                 className="group relative px-4 py-2 text-gray-300 hover:text-ai-green font-mono text-sm transition-all duration-300 hover:bg-ai-light-gray/20 rounded-lg"
               >

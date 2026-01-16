@@ -40,6 +40,7 @@ const Hero: React.FC = () => {
                 <span className="text-gray-500"># Exploring dual pathways:</span><br/>
                 • <span className="text-ai-cyan font-semibold">42_PROJECTS</span> → System-level mastery<br/>
                 • <span className="text-ai-purple font-semibold">AI_AGENT_DEVELOPMENT</span> → Future intelligence<br/>
+                • <span className="text-ai-purple font-semibold">MOBILE APPLICATIONS</span> → Cross-platform solutions<br/>
                 <span className="text-gray-500"># Each iteration pushes boundaries of possibility</span>
               </p>
             </div>

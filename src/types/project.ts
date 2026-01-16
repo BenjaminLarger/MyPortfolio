@@ -7,7 +7,7 @@ export interface Project {
   videoUrl?: string;
   githubUrl?: string;
   liveUrl?: string;
-  category: '42-malaga' | 'ai-agents';
+  category: '42-malaga' | 'ai-agents' | 'mobile-apps';
   featured: boolean;
   completionDate: string;
 }
