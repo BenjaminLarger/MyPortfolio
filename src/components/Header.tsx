@@ -12,9 +12,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-ai-cyan to-ai-purple rounded-lg flex items-center justify-center">
-                <div className="w-3 h-3 bg-ai-black rounded-sm"></div>
-              </div>
+              <img src="/assets/icons/favicon.ico" alt="Logo" className="w-8 h-8 rounded-lg" />
               <h1 className="text-xl font-bold font-mono text-white">
                 <span className="text-ai-cyan">[</span>
                 PORTFOLIO
@@ -27,10 +25,10 @@ const Header: React.FC = () => {
             <div className="flex items-center space-x-1">
               <button
                 onClick={() => scrollToSection('home')}
-                className="group relative px-4 py-2 text-gray-300 hover:text-ai-cyan font-mono text-sm transition-all duration-300 hover:bg-ai-light-gray/20 rounded-lg"
+                className="group relative px-4 py-2 text-gray-300 hover:text-ai-yellow font-mono text-sm transition-all duration-300 hover:bg-ai-light-gray/20 rounded-lg"
               >
                 <span className="relative z-10">home()</span>
-                <div className="absolute inset-0 bg-ai-cyan/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-ai-yellow/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </button>
               <span className="text-ai-light-gray font-mono text-sm">|</span>
               <button
