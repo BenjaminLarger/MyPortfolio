@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
               <div className="w-2 h-2 bg-ai-green rounded-full animate-pulse"></div>
             </div>
             <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto font-mono leading-relaxed">
-              <span className="text-ai-cyan">&gt;</span> Software Developer | AI Enthusiast | Innovation Catalyst
+              <span className="text-ai-cyan">&gt;</span> Lead Full-Stack Engineer | AI Enthusiast | Innovation Catalyst
             </p>
           </div>
           
@@ -37,21 +37,22 @@ const Hero: React.FC = () => {
             <div className="relative p-6 bg-ai-card backdrop-blur-md border border-ai-light-gray/20 rounded-xl max-w-4xl mx-auto">
               <p className="text-lg text-gray-300 leading-relaxed font-mono">
                 <span className="text-ai-cyan">$</span> cat mission.txt<br/>
-                <span className="text-gray-500"># Exploring dual pathways:</span><br/>
+                <span className="text-gray-500"># Building production systems & exploring new pathways:</span><br/>
+                • <span className="text-ai-green font-semibold">PROFESSIONAL_EXPERIENCE</span> → Production-grade platforms @ Monbusiness<br/>
                 • <span className="text-ai-cyan font-semibold">42_PROJECTS</span> → System-level mastery<br/>
                 • <span className="text-ai-purple font-semibold">AI_AGENT_DEVELOPMENT</span> → Future intelligence<br/>
-                • <span className="text-ai-purple font-semibold">MOBILE APPLICATIONS</span> → Cross-platform solutions<br/>
+                • <span className="text-ai-pink font-semibold">MOBILE APPLICATIONS</span> → Cross-platform solutions<br/>
                 <span className="text-gray-500"># Each iteration pushes boundaries of possibility</span>
               </p>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button 
-                onClick={() => document.getElementById('42-projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group relative px-8 py-4 bg-gradient-to-r from-ai-cyan to-ai-blue text-ai-black font-mono font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-ai-hover"
+              <button
+                onClick={() => document.getElementById('professional')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group relative px-8 py-4 bg-gradient-to-r from-ai-green to-ai-cyan text-ai-black font-mono font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-ai-hover"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-ai-cyan to-ai-blue opacity-80 group-hover:opacity-100 transition-opacity"></div>
-                <span className="relative z-10">[LOAD_42_MODULES]</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-ai-green to-ai-cyan opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                <span className="relative z-10">[VIEW_EXPERIENCE]</span>
               </button>
               <button 
                 onClick={() => document.getElementById('ai-projects')?.scrollIntoView({ behavior: 'smooth' })}

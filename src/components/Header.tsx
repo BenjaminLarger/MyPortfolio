@@ -32,6 +32,14 @@ const Header: React.FC = () => {
               </button>
               <span className="text-ai-light-gray font-mono text-sm">|</span>
               <button
+                onClick={() => scrollToSection('professional')}
+                className="group relative px-4 py-2 text-gray-300 hover:text-ai-green font-mono text-sm transition-all duration-300 hover:bg-ai-light-gray/20 rounded-lg"
+              >
+                <span className="relative z-10">experience()</span>
+                <div className="absolute inset-0 bg-ai-green/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </button>
+              <span className="text-ai-light-gray font-mono text-sm">|</span>
+              <button
                 onClick={() => scrollToSection('42-projects')}
                 className="group relative px-4 py-2 text-gray-300 hover:text-ai-cyan font-mono text-sm transition-all duration-300 hover:bg-ai-light-gray/20 rounded-lg"
               >

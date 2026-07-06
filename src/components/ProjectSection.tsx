@@ -12,12 +12,23 @@ interface ProjectSectionProps {
 
 const ProjectSection: React.FC<ProjectSectionProps> = ({ id, title, description, projects, onViewDocumentation }) => {
   const isAISection = id === 'ai-projects';
-  
+  const isProfessional = id === 'professional';
+
+  // Accent theme per section
+  const accentText = isProfessional ? 'text-ai-green' : isAISection ? 'text-ai-purple' : 'text-ai-cyan';
+  const badge = isProfessional
+    ? { label: '[PROD_SYSTEMS]', className: 'border-ai-green/30 text-ai-green bg-ai-green/10' }
+    : isAISection
+      ? { label: '[AI_MODULES]', className: 'border-ai-purple/30 text-ai-purple bg-ai-purple/10' }
+      : { label: '[42_SYSTEM]', className: 'border-ai-cyan/30 text-ai-cyan bg-ai-cyan/10' };
+
   return (
     <section id={id} className="relative py-24 overflow-hidden">
       {/* Section-specific background patterns */}
       <div className="absolute inset-0">
-        {isAISection ? (
+        {isProfessional ? (
+          <div className="absolute inset-0 bg-gradient-to-br from-ai-green/5 to-ai-cyan/5"></div>
+        ) : isAISection ? (
           <div className="absolute inset-0 bg-gradient-to-br from-ai-purple/5 to-ai-pink/5"></div>
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-ai-cyan/5 to-ai-blue/5"></div>
@@ -36,24 +47,20 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ id, title, description,
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-block mb-6">
-            <div className={`px-4 py-2 rounded-full border font-mono text-sm ${
-              isAISection 
-                ? 'border-ai-purple/30 text-ai-purple bg-ai-purple/10' 
-                : 'border-ai-cyan/30 text-ai-cyan bg-ai-cyan/10'
-            }`}>
-              {isAISection ? '[AI_MODULES]' : '[42_SYSTEM]'}
+            <div className={`px-4 py-2 rounded-full border font-mono text-sm ${badge.className}`}>
+              {badge.label}
             </div>
           </div>
-          
+
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-mono text-white mb-6">
-            <span className={isAISection ? 'text-ai-purple' : 'text-ai-cyan'}>//</span> {title}
+            <span className={accentText}>//</span> {title}
           </h2>
-          
+
           <div className="max-w-4xl mx-auto">
             <p className="text-lg text-gray-300 font-mono leading-relaxed">
-              <span className={isAISection ? 'text-ai-purple' : 'text-ai-cyan'}>/* </span>
+              <span className={accentText}>/* </span>
               {description}
-              <span className={isAISection ? 'text-ai-purple' : 'text-ai-cyan'}> */</span>
+              <span className={accentText}> */</span>
             </p>
           </div>
         </div>

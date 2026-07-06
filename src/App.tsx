@@ -5,6 +5,7 @@ import ProjectSection from './components/ProjectSection'
 import TechnologiesSection from './components/TechnologiesSection'
 import Footer from './components/Footer'
 import ProjectModal from './components/ProjectModal'
+import { professionalProjects } from './data/professionalProjects'
 import { projects42 } from './data/projects42'
 import { aiProjects } from './data/aiProjects'
 import { mobileProjects } from './data/mobileProjects'
@@ -21,7 +22,7 @@ function App() {
 
   const handleViewDocumentation = (projectId: string, _projectTitle: string) => {
     // Find the project from all datasets
-    const allProjects = [...projects42, ...aiProjects, ...mobileProjects];
+    const allProjects = [...professionalProjects, ...projects42, ...aiProjects, ...mobileProjects];
     const project = allProjects.find(p => p.id === projectId);
     
     setModalState({
@@ -53,7 +54,14 @@ function App() {
         <Header />
         <main className="pt-20">
           <Hero />
-          <ProjectSection 
+          <ProjectSection
+            id="professional"
+            title="Professional Experience"
+            description="Lead Full-Stack Engineer at Monbusiness — production systems powering a Google Ads agency and its clients, from an all-in-one internal operating platform to customer-facing dashboards and an AI landing page generator."
+            projects={professionalProjects}
+            onViewDocumentation={handleViewDocumentation}
+          />
+          <ProjectSection
             id="42-projects"
             title="42 Projects"
             description="Rigorous projects from the innovative 42 curriculum, focusing on system programming, algorithms, and software engineering fundamentals."
