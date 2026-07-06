@@ -12,12 +12,31 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
   const [markdownContent, setMarkdownContent] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const [isImageFullscreen, setIsImageFullscreen] = useState<boolean>(false);
 
   useEffect(() => {
     if (isOpen && project) {
       loadMarkdownContent();
     }
   }, [isOpen, project]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setIsImageFullscreen(false);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isImageFullscreen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsImageFullscreen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isImageFullscreen]);
 
   const loadMarkdownContent = async () => {
     if (!project) return;
@@ -88,12 +107,25 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                     Your browser does not support the video tag.
                   </video>
                 ) : (
-                  <img
-                    src={project.imageUrl}
-                    alt={`${project.title} preview`}
-                    decoding="async"
-                    className="w-full h-full object-contain"
-                  />
+                  <div className="relative w-full h-full group/image">
+                    <img
+                      src={project.imageUrl}
+                      alt={`${project.title} preview`}
+                      decoding="async"
+                      className="w-full h-full object-contain cursor-zoom-in"
+                      onClick={() => setIsImageFullscreen(true)}
+                    />
+                    <button
+                      onClick={() => setIsImageFullscreen(true)}
+                      className="absolute top-3 right-3 bg-ai-black/70 hover:bg-ai-cyan text-white hover:text-ai-black p-2 rounded-lg border border-ai-light-gray/30 hover:border-ai-cyan transition-colors opacity-0 group-hover/image:opacity-100"
+                      aria-label="View screenshot in full screen"
+                      title="View full screen"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-5v4m0-4h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                      </svg>
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
@@ -186,6 +218,30 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Image Viewer */}
+      {isImageFullscreen && project.imageUrl && (
+        <div
+          className="fixed inset-0 bg-ai-black/95 backdrop-blur-md flex items-center justify-center z-[60] p-4"
+          onClick={() => setIsImageFullscreen(false)}
+        >
+          <button
+            onClick={() => setIsImageFullscreen(false)}
+            className="absolute top-6 right-6 text-gray-300 hover:text-ai-cyan transition-colors p-2 rounded-lg hover:bg-ai-light-gray/20"
+            aria-label="Close full screen view"
+          >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <img
+            src={project.imageUrl}
+            alt={`${project.title} preview - full screen`}
+            className="max-w-full max-h-full object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 };
