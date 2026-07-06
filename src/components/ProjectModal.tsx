@@ -27,16 +27,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
     
     try {
       const url = `/${project.id}.md`;
-      console.log('Fetching markdown from:', url);
       const response = await fetch(url);
-      console.log('Response status:', response.status);
-      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
-      
+
       if (!response.ok) {
         throw new Error(`Documentation not found: ${response.status}`);
       }
       const content = await response.text();
-      console.log('Content preview:', content.substring(0, 200));
       setMarkdownContent(content);
     } catch (err) {
       setError('Failed to load documentation');
@@ -95,6 +91,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                   <img
                     src={project.imageUrl}
                     alt={`${project.title} preview`}
+                    decoding="async"
                     className="w-full h-full object-contain"
                   />
                 )}

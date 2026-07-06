@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Project } from '../types/project';
 
 interface ProjectCardProps {
@@ -7,6 +7,26 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDocumentation }) => {
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+  const [isVideoInView, setIsVideoInView] = useState(false);
+
+  useEffect(() => {
+    const node = videoContainerRef.current;
+    if (!node || isVideoInView) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVideoInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [isVideoInView]);
+
   return (
     <div 
       className="relative group bg-ai-card backdrop-blur-md border border-ai-light-gray/20 rounded-xl shadow-ai-card hover:shadow-ai-hover transition-all duration-500 overflow-hidden cursor-pointer hover:border-ai-cyan/40 hover:bg-ai-card/80"
@@ -22,25 +42,36 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDocumentation 
       
       <div className="relative z-10">
       {project.videoUrl && (
-        <div className="h-48 bg-ai-dark overflow-hidden relative">
-          <video 
-            src={project.videoUrl} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            controls
-            muted
-            loop
-            preload="metadata"
-          >
-            Your browser does not support the video tag.
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-ai-dark/20 to-transparent"></div>
+        <div ref={videoContainerRef} className="h-48 bg-ai-dark overflow-hidden relative">
+          {isVideoInView ? (
+            <video
+              src={project.videoUrl}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              controls
+              muted
+              loop
+              preload="metadata"
+            >
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <svg className="w-10 h-10 text-ai-light-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-ai-dark/20 to-transparent pointer-events-none"></div>
         </div>
       )}
       {!project.videoUrl && project.imageUrl && (
         <div className="h-48 bg-ai-dark overflow-hidden relative">
-          <img 
-            src={project.imageUrl} 
+          <img
+            src={project.imageUrl}
             alt={project.title}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ai-dark/20 to-transparent"></div>
